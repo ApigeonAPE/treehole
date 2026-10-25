@@ -1,0 +1,11 @@
+## [{{server_name}}] Verification rejected
+
+The domain "{{verifier_domain}}" is not in the trusted domain list.
+
+Trusted domains: {{allowed_domains}}
+
+Please send the code from an address on a trusted domain.
+
+---
+{{server_name}}
+This message was sent automatically. Please do not reply.

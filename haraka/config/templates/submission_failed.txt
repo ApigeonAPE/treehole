@@ -1,0 +1,11 @@
+## [{{server_name}}] Submission failed
+
+Sorry, your submission could not be processed.
+
+Error: {{error}}
+
+Please try again later. If the problem persists, contact the administrator.
+
+---
+{{server_name}}
+This message was sent automatically. Please do not reply.

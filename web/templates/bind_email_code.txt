@@ -1,0 +1,11 @@
+## [{{server_name}}] Verification code: {{code}}
+
+You are binding an email address. Your code is: {{code}}
+
+The code is valid for 10 minutes. Do not share it with anyone.
+
+If you did not request this, you can ignore this email.
+
+---
+{{server_name}}
+This message was sent automatically. Please do not reply.

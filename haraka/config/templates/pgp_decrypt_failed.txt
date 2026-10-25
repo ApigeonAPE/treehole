@@ -1,0 +1,13 @@
+## [{{server_name}}] PGP decryption failed
+
+Your message was PGP-encrypted, but decryption failed.
+
+Please check:
+1. whether you used the correct public key
+2. whether the public key is up to date
+
+The public key is attached to this reply.
+
+---
+{{server_name}}
+This message was sent automatically. Please do not reply.

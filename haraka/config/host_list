@@ -1,0 +1,6 @@
+# Accepted recipient domains
+# one domain per line
+# replace with your own domain
+
+# production
+mail.treehole.example

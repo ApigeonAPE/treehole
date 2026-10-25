@@ -1,0 +1,11 @@
+## [{{server_name}}] Verification complete
+
+Congratulations! {{sender_email}} is now verified.
+
+You can now submit to {{submit_address}} without further verification.
+
+Welcome to {{server_name}}!
+
+---
+{{server_name}}
+This message was sent automatically. Please do not reply.

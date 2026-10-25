@@ -1,0 +1,12 @@
+Place your TLS certificate and key here:
+
+- tls_cert.pem — TLS certificate (full chain)
+- tls_key.pem  — TLS private key
+
+For development, generate self-signed certs:
+  openssl req -x509 -newkey rsa:4096 -keyout tls_key.pem -out tls_cert.pem \
+    -days 365 -nodes -subj "/CN=mail.yourdomain.com"
+
+# local development:
+#   openssl req -x509 -newkey rsa:4096 -keyout tls_key.pem -out tls_cert.pem \
+#     -days 365 -nodes -subj "/CN=localhost"

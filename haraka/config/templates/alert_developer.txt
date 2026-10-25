@@ -1,0 +1,16 @@
+## [{{server_name}}] System alert
+
+Automated system alert
+
+{{message}}
+
+{{#sender}}
+Sender: {{sender}}
+{{/sender}}
+{{#payload}}
+Payload: {{payload}}
+{{/payload}}
+
+---
+{{server_name}}
+This message was sent automatically.

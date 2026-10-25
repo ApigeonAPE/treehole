@@ -1,0 +1,149 @@
+services:
+  # ============================================================
+  # Haraka - inbound SMTP server
+  # Accepts external mail and runs the mail_gateway plugin for submissions and verification
+  # ============================================================
+  haraka:
+    build:
+      context: ./haraka
+      dockerfile: Dockerfile
+    image: treehole-haraka:latest
+    container_name: treehole-haraka
+    restart: unless-stopped
+    ports:
+      - "25:25"     # SMTP (public ingress)
+      - "587:587"   # Submission (public ingress, TLS)
+    volumes:
+      - ./haraka/config:/app/config:ro
+      - ./haraka/plugins:/app/plugins:ro
+      - ./config.json:/app/config.json:ro
+      - ./haraka/tls:/app/tls:ro
+      - ./haraka/pgp:/app/pgp:ro       # PGP private key (optional)
+      - ./web/src/mail:/app/mailcore:ro # mail transport layer (shared with the web server)
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - mailnet
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================================
+  # Web server - business API + static files (React SPA)
+  # Public API (auth/entries/posts/user) + internal API (Haraka) + outbound mail
+  # ============================================================
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    image: treehole-web:latest
+    container_name: treehole-web
+    restart: unless-stopped
+    expose:
+      - "80"
+    volumes:
+      - ./config.json:/app/config.json:ro
+      - ./web/data:/app/data   # SQLite persistence
+      - ./web/templates:/app/templates:ro   # email templates
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - mailnet
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================================
+  # Caddy - HTTPS reverse proxy
+  # ============================================================
+  caddy:
+    image: caddy:2-alpine
+    container_name: treehole-caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./caddy/data:/data
+      - ./caddy/config:/config
+    networks:
+      - mailnet
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================================
+  # OpenSMTPD - outbound mail relay
+  # DKIM signing + MX lookup + delivery, shared by Haraka and the web server
+  # ============================================================
+  opensmtpd:
+    build:
+      context: ./opensmtpd
+      dockerfile: Dockerfile
+    image: treehole-opensmtpd:latest
+    container_name: treehole-opensmtpd
+    restart: unless-stopped
+    volumes:
+      - ./data/dkim:/etc/mail/dkim:ro
+    networks:
+      - mailnet
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ============================================================
+  # Redis - cache and key-value store
+  # authorized emails, verification codes, OTPs, rate-limit counters, cooldowns
+  # ============================================================
+  redis:
+    image: redis:7-alpine
+    container_name: treehole-redis
+    restart: unless-stopped
+    command: >
+      redis-server
+      --appendonly yes
+      --maxmemory 64mb
+      --maxmemory-policy allkeys-lru
+      --save 900 1
+      --save 300 10
+      --save 60 10000
+    volumes:
+      - ./redis/data:/data
+    networks:
+      - mailnet
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+# ============================================================
+# Internal network
+# ============================================================
+networks:
+  mailnet:
+    driver: bridge
+    name: treehole-mailnet

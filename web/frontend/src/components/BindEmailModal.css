@@ -1,0 +1,115 @@
+.bind-modal {
+  max-width: 440px;
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+.bind-modal h2.modal-title {
+  padding: 0;
+  margin: 0 0 0.75rem;
+  font-size: 1.1rem;
+}
+
+.bind-modal form {
+  padding: 0;
+}
+
+.bind-modal .alert {
+  padding: 0.55rem 0.7rem;
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+  font-size: 0.85rem;
+}
+
+.bind-modal .alert-error {
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
+
+.bind-modal .alert-info {
+  background: #eff6ff;
+  color: #2563eb;
+  border: 1px solid #bfdbfe;
+}
+
+.bind-modal .step-desc {
+  text-align: center;
+  color: #555;
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+}
+
+.bind-modal .btn-link {
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0.5rem 0;
+}
+
+.bind-modal .btn-link:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.bind-modal .form-group {
+  margin-bottom: 1rem;
+}
+
+.bind-modal .form-group label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.bind-modal .form-group input {
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  border: 1.5px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+.bind-modal .form-group input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* Merge confirm */
+.merge-confirm {
+  margin-bottom: 0.5rem;
+}
+
+.merge-warn {
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+  color: #b45309;
+}
+
+.merge-confirm p {
+  font-size: 0.85rem;
+  color: #555;
+  margin-bottom: 0.3rem;
+}
+
+.merge-confirm ul {
+  margin: 0.3rem 0 0.75rem;
+  padding-left: 1.25rem;
+  font-size: 0.85rem;
+  color: #333;
+}
+
+.merge-confirm ul li {
+  margin-bottom: 0.15rem;
+}
+
+.merge-note {
+  font-size: 0.8rem !important;
+  color: #999 !important;
+  margin-bottom: 1rem !important;
+}

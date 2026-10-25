@@ -1,0 +1,9 @@
+## [{{server_name}}] Invalid code
+
+The code {{code}} is invalid or has expired.
+
+Please submit again to get a new code.
+
+---
+{{server_name}}
+This message was sent automatically. Please do not reply.

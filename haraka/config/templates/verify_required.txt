@@ -1,0 +1,17 @@
+## [{{server_name}}] Verify your email
+
+Your email address is not verified yet, so you cannot submit directly.
+
+Follow these steps to verify:
+
+1. Put {{code}} in the body of an email
+2. Send it from a {{allowed_domains}} address to:
+   {{verify_address}}
+
+Code validity: {{code_ttl_minutes}} minutes
+
+After verification, submit again.
+
+---
+{{server_name}}
+This message was sent automatically. Please do not reply.

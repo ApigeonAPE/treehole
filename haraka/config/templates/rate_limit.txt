@@ -1,0 +1,9 @@
+## [{{server_name}}] Too many requests
+
+You have reached the verification request limit.
+
+Please try again in {{wait_minutes}} minutes.
+
+---
+{{server_name}}
+This message was sent automatically. Please do not reply.

@@ -1,0 +1,13 @@
+## [{{server_name}}] Reply failed
+
+Could not reply to the specified thread.
+
+Please check the ID format:
+- reply to a thread: /r <4-char ID>
+- reply to a floor: /r <6-char ID>
+
+IDs use base-34 characters (0-9, a-z, excluding i/o).
+
+---
+{{server_name}}
+This message was sent automatically. Please do not reply.

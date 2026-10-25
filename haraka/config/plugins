@@ -1,0 +1,13 @@
+# Haraka plugin load order
+
+# sync authorized emails on startup
+init_authorized
+
+# recipient domain validation
+rcpt_to.in_host_list
+
+# parse message headers
+headers
+
+# main custom plugin
+mail_gateway

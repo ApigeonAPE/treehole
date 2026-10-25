@@ -1,0 +1,115 @@
+/* Torus font - used for all IDs */
+@font-face {
+  font-family: 'Torus';
+  src: url('/Torus-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* theme colors */
+:root {
+  --primary: #00679C;
+  --primary-light: #e0f0f8;
+  --primary-pale: #b3d8ed;
+}
+
+/* Reset & Base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  overflow-y: scroll;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+  background: #f5f5f5;
+  color: #333;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Scroll */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+
+/* ============================================================
+   Shared header - used by every page
+   ============================================================ */
+.header {
+  background: var(--primary);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0.65rem 1rem 0.65rem 1.25rem;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-title {
+  margin: 0;
+  font-size: 1.15rem;
+  color: #fff;
+  font-weight: 600;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.header-user {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.8);
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.header-spacer {
+  width: 50px;
+}
+
+.btn-back {
+  background: none;
+  border: 1.5px solid rgba(255,255,255,0.4);
+  border-radius: 6px;
+  color: rgba(255,255,255,0.9);
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0.3rem 0.7rem;
+}
+
+.btn-back:hover {
+  border-color: #fff;
+  color: #fff;
+}

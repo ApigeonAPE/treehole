@@ -1,0 +1,28 @@
+## [{{server_name}}] Submission received
+
+Your submission has been published.
+
+{{#type}}
+Type: {{type}}
+{{/type}}
+{{#entry_id}}
+ID: {{entry_id}}
+{{/entry_id}}
+{{#floor_id}}
+ID: {{floor_id}}
+{{/floor_id}}
+{{#entry_url}}
+View: {{{entry_url}}}
+{{/entry_url}}
+
+{{^pgp_encrypted}}
+PGP encryption is supported; the public key is attached to this reply.
+{{/pgp_encrypted}}
+
+{{#pgp_encrypted}}
+Your submission was PGP-encrypted.
+{{/pgp_encrypted}}
+
+---
+{{server_name}}
+This message was sent automatically. Please do not reply.

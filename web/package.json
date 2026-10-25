@@ -1,0 +1,23 @@
+{
+  "name": "treehole-web",
+  "version": "1.0.0",
+  "description": "Treehole web server - API + static files",
+  "private": true,
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "12.11.1",
+    "cookie-parser": "^1.4.7",
+    "express": "^4.22.3",
+    "ioredis": "^5.4.1",
+    "jsonwebtoken": "^9.0.2",
+    "mustache": "^4.2.0",
+    "nodemailer": "^10.2.0"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  }
+}

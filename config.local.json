@@ -1,0 +1,42 @@
+{
+  "_comment": "Local development overrides. docker-compose.local.yml mounts this file as /app/config.local.json; it is deep-merged over config.json at startup",
+
+  "server": {
+    "hostname": "localhost"
+  },
+  "addresses": {
+    "submit": "submit@localhost",
+    "verify": "verify@localhost",
+    "noreply": "noreply@localhost",
+    "admin_alert": "admin@localhost",
+    "postmaster": "postmaster@localhost"
+  },
+  "auth": {
+    "allowed_domains": ["localhost"],
+    "match_mode": "exact"
+  },
+  "ratelimit": {
+    "submission": {
+      "max_attempts": 10,
+      "window_seconds": 600
+    },
+    "cooldown_seconds": 30,
+    "verify": {
+      "max_attempts": 10,
+      "window_seconds": 600
+    }
+  },
+  "alert": {
+    "ratelimit_hits_threshold": 2,
+    "threshold_window_minutes": 10
+  },
+  "pgp": {
+    "private_key_path": "/app/pgp/SECRET.asc"
+  },
+  "mail": {
+    "order": ["smtp"],
+    "quota": {
+      "enabled": false
+    }
+  }
+}

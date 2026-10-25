@@ -1,0 +1,105 @@
+{
+  "server": {
+    "name": "Treehole",
+    "site_title": "Treehole",
+    "hostname": "treehole.example",
+    "timezone": "+8",
+    "verify_instructions": "Please send the verification code as the body of an email from a {trusted_domains} address to {verify_address}"
+  },
+  "addresses": {
+    "submit": "submit@mail.treehole.example",
+    "verify": "verify@mail.treehole.example",
+    "noreply": "noreply@mail.treehole.example",
+    "admin_alert": "admin@mail.treehole.example",
+    "postmaster": "postmaster@mail.treehole.example"
+  },
+  "smtp": {
+    "host": "opensmtpd",
+    "port": 10025
+  },
+  "mail": {
+    "strategy": "balanced",
+    "order": ["mailgun", "brevo"],
+    "timeout_ms": 8000,
+    "quota": {
+      "enabled": true,
+      "reset_timezone": "UTC",
+      "reserve_for_critical": 0.15,
+      "caps": {
+        "mailgun": 100,
+        "brevo": 300
+      }
+    },
+    "health": {
+      "cooldown_seconds": 60
+    },
+    "brevo": {
+      "enabled": true,
+      "api_key": "",
+      "api_url": "https://api.brevo.com/v3/smtp/email",
+      "tags": ["treehole"],
+      "attachment_fallback": "rename"
+    }
+  },
+  "web_server": {
+    "internal_host": "web",
+    "internal_port": 9000,
+    "internal_token": "CHANGE_ME_openssl_rand_hex_32"
+  },
+  "admin": {
+    "token": "CHANGE_ME_openssl_rand_hex_32",
+    "allowed_ips": [],
+    "allowed_origins": []
+  },
+  "jwt": {
+    "secret": "",
+    "expires_in_seconds": 7776000
+  },
+  "auth": {
+    "allowed_domains": ["example.edu"],
+    "match_mode": "suffix"
+  },
+  "ratelimit": {
+    "submission": {
+      "window_seconds": 600,
+      "max_attempts": 3
+    },
+    "cooldown_seconds": 120,
+    "verify": {
+      "window_seconds": 600,
+      "max_attempts": 5
+    }
+  },
+  "verification": {
+    "code_length": 6,
+    "code_ttl_seconds": 600,
+    "code_regex": "\\b(\\d{4,8})\\b"
+  },
+  "target": {
+    "webhook_url": "http://web:9000/api/internal/submissions",
+    "webhook_token": "CHANGE_ME_openssl_rand_hex_32",
+    "post_timeout_ms": 10000,
+    "post_retry": {
+      "max_attempts": 3,
+      "delays_ms": [2000, 5000]
+    }
+  },
+  "pgp": {
+    "private_key_path": "/app/pgp/private.asc",
+    "passphrase": ""
+  },
+  "alert": {
+    "ratelimit_hits_threshold": 50,
+    "threshold_window_minutes": 10
+  },
+  "dkim": {
+    "selector": "mail",
+    "algorithm": "ed25519"
+  },
+  "mailgun": {
+    "enabled": true,
+    "api_key": "",
+    "api_url": "https://api.mailgun.net/v3",
+    "domain": "mail.treehole.example"
+  }
+}

@@ -1,0 +1,16 @@
+## [{{server_name}}] Submission failed: content too long
+
+Your submission exceeds the length limit.
+
+Current limit: {{max_length}} characters
+Your submission: {{content_length}} characters
+
+Please shorten it and send again.
+
+{{#entry_id}}
+Target thread: #{{entry_id}}
+{{/entry_id}}
+
+---
+{{server_name}}
+This message was sent automatically. Please do not reply.

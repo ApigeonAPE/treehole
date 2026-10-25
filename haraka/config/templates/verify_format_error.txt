@@ -1,0 +1,9 @@
+## [{{server_name}}] Code not found
+
+No verification code was found in the message body.
+
+Please make sure the body contains only the code.
+
+---
+{{server_name}}
+This message was sent automatically. Please do not reply.

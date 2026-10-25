@@ -1,0 +1,44 @@
+# ============================================================
+# Local development overrides
+#
+# Usage:
+#   docker-compose -f docker-compose.yml -f docker-compose.local.yml up -d --build
+#
+# Production only needs:
+#   docker-compose up -d
+# ============================================================
+
+services:
+  haraka:
+    ports:
+      - "2525:25"     # SMTP -> localhost:2525 (avoids Windows port conflicts)
+      - "5870:587"    # Submission → localhost:5870
+    volumes:
+      - ./config.local.json:/app/config.local.json:ro
+
+  web:
+    ports:
+      - "8080:80"     # HTTP → localhost:8080
+      - "8443:443"    # HTTPS → localhost:8443
+    volumes:
+      - ./config.local.json:/app/config.local.json:ro
+      - ./web/public:/app/public:ro    # frontend hot reload (takes effect after npm run build)
+
+  # Local: use Mailpit instead of OpenSMTPD
+  # Mailpit captures all outgoing mail instead of delivering it; web UI on localhost:8025
+  opensmtpd:
+    image: axllent/mailpit:latest
+    container_name: treehole-opensmtpd
+    restart: unless-stopped
+    ports:
+      - "8025:8025"    # Mailpit Web UI → localhost:8025
+    environment:
+      - MP_SMTP_BIND_ADDR=0.0.0.0:10025
+    networks:
+      - mailnet
+
+  redis:
+    # Local: connect to Redis with docker exec treehole-redis redis-cli
+    # Port mapping often conflicts on Windows, so it is commented out
+    # ports:
+    #   - "6380:6379"
