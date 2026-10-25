@@ -248,4 +248,4 @@ reserved share so they are never starved by bulk receipts.
 
 ## License
 
-Add the license of your choice before publishing.
+MIT License
