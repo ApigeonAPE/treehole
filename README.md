@@ -1,3 +1,7 @@
+**BEFORE READ:**
+
+AI was deeply involved in the development of this project. Even though the project has been running stably in production for more than 30 days, please decide at your own discretion whether to use it.
+
 # Treehole — Email-Authenticated Message Board
 
 An anonymous message board where posts can be submitted by email. Inbound mail is
